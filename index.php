@@ -9,6 +9,6 @@ if (isset($_GET["churchid"])){
     header("Location: ". $url);
 }
 else {
-    header("Location: http://assets.kerkdienstgemist.nl/static/messages/no_broadcast.mp3/");
+    header("Location: http://assets.kerkdienstgemist.nl/static/messages/no_broadcast.mp3");
 }
 
