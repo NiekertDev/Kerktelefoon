@@ -5,8 +5,13 @@ if (isset($_GET["churchid"])){
     $logindata = json_decode(file_get_contents($loginurl));
     $apiurl = "http://". $logindata->host ."/data-". $logindata->w .".js";
     $apidata = json_decode(file_get_contents($apiurl));
-    $url = "http://". $apidata->live[0]->host ."/". $apidata->live[0]->tag ."?w=". $logindata->w;
-    header("Location: ". $url);
+    if (!isset($apidata->live[0])){
+        header("Location: http://assets.kerkdienstgemist.nl/static/messages/no_broadcast.mp3");
+    }
+    else {
+        $url = "http://". $apidata->live[0]->host ."/". $apidata->live[0]->tag ."?w=". $logindata->w;
+        header("Location: ". $url);
+    }
 }
 else {
     header("Location: http://assets.kerkdienstgemist.nl/static/messages/no_broadcast.mp3");
