@@ -5,7 +5,7 @@ if (isset($_GET["churchid"])){
     $logindata = json_decode(file_get_contents($loginurl));
     $apiurl = "http://". $logindata->host ."/data-". $logindata->w .".js";
     $apidata = json_decode(file_get_contents($apiurl));
-    if (!isset($apidata->live[0])){
+    if ($apidata->live[0]["id"] == "nolive"){
         header("Location: http://assets.kerkdienstgemist.nl/static/messages/no_broadcast.mp3");
     }
     else {
